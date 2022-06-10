@@ -47,7 +47,7 @@ export default class RegisterController extends AbstractController {
       return res.status(400).send({ message: "Passwords do not match!" });
     }
 
-    const userExists = await User.findOne(email);
+    const userExists = await User.findOne({ where: { email: email } });
 
     if (userExists) {
       return res
@@ -65,6 +65,7 @@ export default class RegisterController extends AbstractController {
     try {
       user.save();
       return res.status(200).json({
+        message: "User succesfully created",
         user,
       });
     } catch (err) {
