@@ -6,6 +6,7 @@ import helmet from "helmet";
 import { AbstractController } from "./AbstractController";
 import { Sequelize } from "sequelize-typescript";
 import { User } from "./models/user";
+import { Todo } from "./models/toDo";
 
 export default class App {
   app: Application;
@@ -42,7 +43,7 @@ export default class App {
       password: process.env.DB_PASSWORD,
       port: parseInt(process.env.DB_PORT),
       dialect: "postgres",
-      models: [User],
+      models: [User, Todo],
     });
     sequelizeConnection.authenticate();
   }
