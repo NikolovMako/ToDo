@@ -3,6 +3,7 @@ import { AbstractController } from "../AbstractController";
 import { IUser, Roles } from "../interfaces";
 import { User } from "../models/user";
 import { body, validationResult } from "express-validator";
+import * as argon from "argon2";
 
 export default class RegisterController extends AbstractController {
   path = "/register";
@@ -43,6 +44,8 @@ export default class RegisterController extends AbstractController {
 
     const { email, name, password, confirmPassword } = req.body;
 
+    const hash = await argon.hash(password);
+
     if (password !== confirmPassword) {
       return res.status(400).send({ message: "Passwords do not match!" });
     }
@@ -58,7 +61,7 @@ export default class RegisterController extends AbstractController {
     const user = new User({
       email,
       name,
-      password,
+      password: hash,
       role: Roles.USER,
     });
 
