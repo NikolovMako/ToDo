@@ -27,6 +27,7 @@ export default class TodoController extends AbstractController {
       this.createTodo
     );
     this.router.get(this.path, auth, this.getTodo);
+    this.router.put(`${this.path}/:id`, auth, this.editTodo);
   }
 
   async createTodo(req: Request, res: Response, next: NextFunction) {
@@ -60,5 +61,24 @@ export default class TodoController extends AbstractController {
         .json({ message: "fetched todos succesfully", toDo });
     }
     return res.status(500).json({ message: "Internal server error" });
+  }
+  async editTodo(req: Request, res: Response, next: NextFunction) {
+    const descrId = req.params.id;
+    const description = req.body.description;
+
+    try {
+      const descriptionToEdit = await Todo.findByPk(descrId);
+      descriptionToEdit.description = description;
+
+      const newDescription = await descriptionToEdit.save();
+
+      return res
+        .status(200)
+        .json({ message: "Edited description", newDescription });
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ message: `Internal server error.\n\n${err}` });
+    }
   }
 }

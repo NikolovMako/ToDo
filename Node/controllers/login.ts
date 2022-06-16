@@ -37,10 +37,10 @@ export default class LoginController extends AbstractController {
     const user = await User.findOne({ where: { email: email } });
     try {
       if (!user) {
-        return res.status(401).send({ message: "Invalid email adress" });
+        return res.status(422).send({ message: "Invalid email adress" });
       }
       if (!(await argon.verify(user.password, password))) {
-        return res.status(401).send({ message: "Password is incorrect" });
+        return res.status(422).send({ message: "Password is incorrect" });
       }
       const token = jwt.sign(
         {

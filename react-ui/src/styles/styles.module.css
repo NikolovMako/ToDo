@@ -7,7 +7,7 @@
   height: auto;
   width: 10cm;
   border: groove;
-  top: 3cm;
+  top: 2cm;
   position: relative;
 }
 
@@ -33,4 +33,63 @@ color:red
 }
 .active:hover {
   color: red;
+}
+.spinner__size {
+  height: 2.5cm;
+  width: 2.5cm;
+}
+html, body, body > div, .backGround {
+  background-color: #333333;
+  height: 100%;
+}
+
+.bigger__container {
+  padding: 1rem;
+  margin: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: white;
+  height: auto;
+  width: auto;
+  border: groove;
+  top: 2cm;
+  position: relative;
+}
+.space__between {
+  display: flex;
+  justify-content: space-between;
+}
+.align__right {
+  display: flex;
+  justify-content: right;
+  margin: 0.1cm;
+}
+
+.space__around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form__control {
+  width: 15cm
+}
+
+.justify__center {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.little__marg {
+  margin-right: 0.3cm;
+}
+
+
+.table__data {
+  color: white;
+}
+
+.table__data:hover {
+  color:red
 }
