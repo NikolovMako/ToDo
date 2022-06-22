@@ -31,9 +31,9 @@ export interface Todos {
 }
 
 export interface ITodo {
-  id?: number;
+  id: number;
   description: string;
-  userId?: number;
+  userId?: number | null;
   createdAt: string;
   updatedAt: string;
   user: IUser[];
@@ -44,7 +44,6 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  role: string;
   createdAt: string;
   updatedAt: string;
 }

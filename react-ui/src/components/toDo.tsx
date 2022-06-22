@@ -1,19 +1,19 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Formik } from "formik";
+import { useEffect } from "react";
+import { Button, Container, Form } from "react-bootstrap";
 import { connect, ConnectedProps } from "react-redux";
-import { IDescription, ITodo, IUser } from "../interfaces/interfaces";
+import { IDescription } from "../interfaces/interfaces";
 import { AppDispatch, RootState } from "../store/store";
-import { getTodoList, addTodo } from "../store/todo/actions";
+import { addTodo, getTodoList } from "../store/todo/actions";
 import classes from "../styles/styles.module.css";
 import TodoCard from "../UI/TodoCard";
-import { Formik } from "formik";
 import { todoSchema } from "../validation/todoValidation";
-import EditTodo from "../modals/editTodo";
 
 const mapStateToProps = (state: RootState) => ({
   user: state.user,
   todo: state.todo.toDo,
+  todoModal: state.todoModal,
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) =>
@@ -24,8 +24,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = ConnectedProps<typeof connector>;
 
 const Todo: React.FC<Props> = ({ user, getTodoList, todo, addTodo }) => {
-  const [show, setShow] = useState(false);
-
   const initialValues = {
     description: "",
   };
@@ -33,7 +31,6 @@ const Todo: React.FC<Props> = ({ user, getTodoList, todo, addTodo }) => {
   useEffect(() => {
     getTodoList();
   }, [getTodoList]);
-  console.log("another todo", todo);
 
   return (
     <Formik
@@ -70,6 +67,7 @@ const Todo: React.FC<Props> = ({ user, getTodoList, todo, addTodo }) => {
                 )}
               </Form>
               <br />
+
               <TodoCard todo={todo} />
             </div>
           </Container>

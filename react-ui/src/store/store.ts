@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { todoReducer } from "./todo/reducer";
+import { todoModalReducer } from "./todo/todoModal";
 import { tokenReducer } from "./token/reducer";
 import { uiReducer } from "./UI/reducer";
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   token: tokenReducer,
   todo: todoReducer,
+  todoModal: todoModalReducer,
 });
 
 const store = configureStore({

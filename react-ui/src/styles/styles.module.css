@@ -35,8 +35,10 @@ color:red
   color: red;
 }
 .spinner__size {
+  margin: 3cm;
   height: 2.5cm;
   width: 2.5cm;
+  color: red;
 }
 html, body, body > div, .backGround {
   background-color: #333333;
@@ -92,4 +94,20 @@ html, body, body > div, .backGround {
 
 .table__data:hover {
   color:red
+}
+
+.form__edit__control {
+  width: 12.3cm;
+  margin-bottom: 0.5cm;
+}
+
+.justify__form__center {
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+}
+
+.button__small {
+  width: 20%;
+  
 }

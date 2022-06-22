@@ -1,9 +1,8 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { AbstractController } from "../AbstractController";
-import { IUser, Roles } from "../interfaces";
-import { User } from "../models/user";
-import { body, validationResult } from "express-validator";
 import * as argon from "argon2";
+import { NextFunction, Request, Response, Router } from "express";
+import { body, validationResult } from "express-validator";
+import { AbstractController } from "../AbstractController";
+import { User } from "../models/user";
 
 export default class RegisterController extends AbstractController {
   path = "/register";
@@ -62,7 +61,6 @@ export default class RegisterController extends AbstractController {
       email,
       name,
       password: hash,
-      role: Roles.USER,
     });
 
     try {

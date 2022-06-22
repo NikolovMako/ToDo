@@ -3,12 +3,6 @@ export interface IUser {
   email: string;
   name: string;
   password: string;
-  role: Roles;
-}
-
-export enum Roles {
-  ADMIN = "Admin",
-  USER = "User",
 }
 
 export interface ITodo {
