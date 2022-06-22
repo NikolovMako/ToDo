@@ -1,4 +1,4 @@
-# Simple Todo
+# Simple Todo with Register & Login
 
 1.First load the Node folder into your IDE, npm install and docker compose -up.
 
