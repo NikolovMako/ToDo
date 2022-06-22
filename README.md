@@ -4,7 +4,7 @@
 
 2.Setup the environments and your docker image, and in app.ts at row 48 add "sequelizeConnection.sync({force:true})".
 
-3.Run npx ts-node server.ts in the terminal, then you can then remove the command at row 48. You now have 2 tables set to work with.
+3.Run npx ts-node server.ts in the terminal, you can then remove the command at row 48. You now have 2 tables set to work with.
 
 4.Load react-ui and run npm install & npm start.
 
