@@ -1,6 +1,13 @@
 import { instance } from "../../api/api";
 import { IDescription } from "../../interfaces/interfaces";
-import { EDIT_TODO, GET_TODOS, SET_ERRORS, SET_TODOS } from "../types";
+import {
+  EDIT_TODO,
+  GET_TODO,
+  GET_TODOS,
+  SET_ERRORS,
+  SET_TODO,
+  SET_TODOS,
+} from "../types";
 
 export const getTodoList = () => (dispatch: any) => {
   dispatch({ type: GET_TODOS });
@@ -34,8 +41,37 @@ export const addTodo = (data: IDescription) => (dispatch: any) => {
 export const editTodo = (id: number, data: IDescription) => (dispatch: any) => {
   instance
     .put(`/todo/${id}`, data)
-    .then(() => {
-      dispatch({ type: EDIT_TODO });
+    .then((res) => {
+      alert("Added description");
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getCurrentTodoId = (id: number) => (dispatch: any) => {
+  dispatch({
+    type: GET_TODO,
+  });
+  instance
+    .get(`/todo/${id}`)
+    .then((res) => {
+      dispatch({ type: SET_TODO, payload: res.data.description });
+      console.log(res, "SET_TODO");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const deleteCurrentTodoId = (id: number) => (dispatch: any) => {
+  dispatch({ type: GET_TODO });
+  instance
+    .delete(`/todo/${id}`)
+    .then((res) => {
+      alert("Todo deleted");
+      console.log(res);
     })
     .catch((err) => {
       console.log(err);
