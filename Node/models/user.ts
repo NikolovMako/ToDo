@@ -1,17 +1,14 @@
 import {
-  Table,
-  Column,
-  Model,
-  DataType,
-  NotEmpty,
   AutoIncrement,
-  PrimaryKey,
-  ForeignKey,
-  BelongsTo,
+  Column,
+  DataType,
   HasOne,
+  Model,
+  PrimaryKey,
+  Table,
 } from "sequelize-typescript";
 import { Optional } from "sequelize/types";
-import { Roles, IUser } from "../interfaces";
+import { IUser } from "../interfaces";
 import { Todo } from "./toDo";
 
 interface UserCreationAttribute extends Optional<IUser, "id"> {}
@@ -31,9 +28,6 @@ export class User extends Model<IUser, UserCreationAttribute> {
 
   @Column
   password: string;
-
-  @Column(DataType.ENUM(Roles.ADMIN, Roles.USER))
-  role: string;
 
   @HasOne(() => Todo)
   todo: Todo;

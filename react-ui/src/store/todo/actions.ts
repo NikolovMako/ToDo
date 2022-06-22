@@ -1,13 +1,6 @@
 import { instance } from "../../api/api";
 import { IDescription } from "../../interfaces/interfaces";
-import {
-  EDIT_TODO,
-  GET_TODO,
-  GET_TODOS,
-  SET_ERRORS,
-  SET_TODO,
-  SET_TODOS,
-} from "../types";
+import { GET_TODO, GET_TODOS, SET_ERRORS, SET_TODO, SET_TODOS } from "../types";
 
 export const getTodoList = () => (dispatch: any) => {
   dispatch({ type: GET_TODOS });

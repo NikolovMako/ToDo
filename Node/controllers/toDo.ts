@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { body, validationResult } from "express-validator";
 import { AbstractController } from "../AbstractController";
-import { ITodo, IUser } from "../interfaces";
 import auth from "../middleware/auth";
 import { Todo } from "../models/toDo";
 import { User } from "../models/user";

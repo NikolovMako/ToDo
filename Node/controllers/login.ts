@@ -46,7 +46,6 @@ export default class LoginController extends AbstractController {
         {
           email: user.email,
           userId: user.id,
-          role: user.role,
         },
         process.env.JWT_SECRET_KEY,
         { expiresIn: process.env.JWT_EXPIRES_IN }
