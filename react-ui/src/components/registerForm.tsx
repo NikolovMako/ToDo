@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { registerSchema } from "../validation/registerValidation";
@@ -7,6 +8,7 @@ import { instance } from "../api/api";
 import { registerUser } from "../interfaces/interfaces";
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
   const initialValues = {
     email: "",
     name: "",
@@ -23,6 +25,7 @@ const RegisterForm = () => {
           .post("/register", values)
           .then(async (res) => {
             alert(res.data.message);
+            navigate('/Login')
             console.log(res);
           })
           .catch((err) => {
@@ -31,22 +34,22 @@ const RegisterForm = () => {
           });
       }}
     >
-      {(props) => (
+      {({ handleChange, handleBlur, handleSubmit, touched, errors, values, isValid, dirty }) => (
         <div>
           <Container className={classes.container}>
-            <Form onSubmit={props.handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
                   className={classes.text__center}
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
                 />
-                {props.errors.email && props.touched.email && (
-                  <div id="emailConfirm" className={classes.text__center}>
-                    {props.errors.email}
+                {errors.email && touched.email && (
+                  <div id="emailConfirm" className={classes.text__center__error}>
+                    {errors.email}
                   </div>
                 )}
               </Form.Group>
@@ -55,13 +58,13 @@ const RegisterForm = () => {
                   type="text"
                   placeholder="Enter Name"
                   className={classes.text__center}
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
                 />
-                {props.errors.name && props.touched.name && (
-                  <div id="name" className={classes.text__center}>
-                    {props.errors.name}
+                {errors.name && touched.name && (
+                  <div id="name" className={classes.text__center__error}>
+                    {errors.name}
                   </div>
                 )}
               </Form.Group>
@@ -71,13 +74,13 @@ const RegisterForm = () => {
                   type="password"
                   placeholder="Enter Password"
                   className={classes.text__center}
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
                 />
-                {props.errors.password && props.touched.password && (
-                  <div id="passwordConfirm" className={classes.text__center}>
-                    {props.errors.password}
+                {errors.password && touched.password && (
+                  <div id="passwordConfirm" className={classes.text__center__error}>
+                    {errors.password}
                   </div>
                 )}
               </Form.Group>
@@ -86,16 +89,16 @@ const RegisterForm = () => {
                   type="password"
                   placeholder="Confirm Password"
                   className={classes.text__center}
-                  onChange={props.handleChange}
-                  onBlur={props.handleBlur}
-                  value={props.values.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.confirmPassword}
                 />
-                {props.errors.confirmPassword && props.touched.confirmPassword && (
+                {errors.confirmPassword && touched.confirmPassword && (
                   <div
                     id="passwordConfirmation"
-                    className={classes.text__center}
+                    className={classes.text__center__error}
                   >
-                    {props.errors.confirmPassword}
+                    {errors.confirmPassword}
                   </div>
                 )}
               </Form.Group>
@@ -103,7 +106,7 @@ const RegisterForm = () => {
                 <Button
                   variant="dark"
                   type="submit"
-                  disabled={!(props.isValid && props.dirty)}
+                  disabled={!(isValid && dirty)}
                 >
                   Submit
                 </Button>

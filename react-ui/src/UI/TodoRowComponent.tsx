@@ -8,7 +8,7 @@ import { convertedDate } from "../utility/dateFormat";
 
 interface Props {
   t: ITodo;
-  setShow: Dispatch<SetStateAction<boolean>>;
+  setShow: (event:any) => void
 }
 
 const TodoRowComponent: React.FC<Props> = (props: Props) => {
@@ -16,6 +16,8 @@ const TodoRowComponent: React.FC<Props> = (props: Props) => {
   const handleShow = () => {
     dispatch(getCurrentTodoId(props.t.id));
     props.setShow(true);
+    console.log('im in',props.setShow(false))
+    console.log('im in',props.setShow(true))
   };
 
   const handleDelete = () => {
