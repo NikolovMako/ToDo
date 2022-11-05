@@ -15,7 +15,5 @@ export const registerSchema = yup.object().shape({
   confirmPassword: yup
     .string()
     .required("Confirm Password is requiered")
-    .min(5, "Password is too short")
-    .max(20, "Password is too long")
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
